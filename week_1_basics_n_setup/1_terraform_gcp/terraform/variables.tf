@@ -1,20 +1,26 @@
+variable "credentials" {
+    description = "Link to json file"
+    default = "E:/Studying/Zoomcamp2023/credentials/sync-capable-030821-a704903a1d70.json"
+}
+
 locals {
-  data_lake_bucket = "dtc_data_lake"
+    data_lake_bucket = "dtc_data_lake"
 }
 
 variable "project" {
-  description = "Your GCP Project ID"
+    description = "Your GCP Project ID"
+    default = "sync-capable-030821"
+    type = string
 }
-
 variable "region" {
-  description = "Region for GCP resources. Choose as per your location: https://cloud.google.com/about/locations"
-  default = "europe-west6"
-  type = string
+    description = "Region for GCP resources. Choose as per your location: https://cloud.google.com/about/locations"
+    default = "ap-southeast-1"
+    type = string
 }
 
-variable "storage_class" {
-  description = "Storage class type for your bucket. Check official docs for more info."
-  default = "STANDARD"
+variable "storage_class"{
+    description = "Storage class type for your bucket. Check official docs for more info."
+    default = "STANDARD"
 }
 
 variable "BQ_DATASET" {
