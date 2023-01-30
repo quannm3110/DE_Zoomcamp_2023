@@ -1,0 +1,27 @@
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz"
+
+URL_LOOKUP="https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv"
+
+docker run \
+    --network=homework_default \
+    taxi_ingest:v001 \
+        --user=root \
+        --password=root \
+        --host=localhost \
+        --port=5432 \
+        --db=ny_taxi \
+        --table_name=yellow_taxi_trips \
+        --url=${URL} \
+        --url_zone_lookup=${URL_LOOKUP} \
+        --lookup_table_name=zone_lookup
+
+python ingest_data_hw.py \
+    --user=root \
+    --password=root \
+    --host=localhost \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_trips \
+    --url=${URL} \
+    --url_zone_lookup=${URL_LOOKUP} \
+    --lookup_table_name=zone_lookup
